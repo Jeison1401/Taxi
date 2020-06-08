@@ -1,5 +1,7 @@
 using Prism;
 using Prism.Ioc;
+using Syncfusion.Licensing;
+using Taxi.Common.Services;
 using Taxi.Prism.ViewModels;
 using Taxi.Prism.Views;
 using Xamarin.Essentials.Implementation;
@@ -19,6 +21,7 @@ namespace Taxi.Prism
 
         protected override async void OnInitialized()
         {
+            SyncfusionLicenseProvider.RegisterLicense("MjY5MTExQDMxMzgyZTMxMmUzMGdPK2VCVFVFV09UQnRacFZMQ0NGWXBic3ZjRUdCa2VicmIwRndvUCtWdms9");
             InitializeComponent();
 
             await NavigationService.NavigateAsync("/TaxiMasterDetailPage/NavigationPage/HomePage");
@@ -26,10 +29,9 @@ namespace Taxi.Prism
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
-
+            containerRegistry.Register<IGeolocatorService, GeolocatorService>();
+            containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
-
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<TaxiMasterDetailPage, TaxiMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<TaxiHistoryPage, TaxiHistoryPageViewModel>();
@@ -38,5 +40,7 @@ namespace Taxi.Prism
             containerRegistry.RegisterForNavigation<ReportPage, ReportPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
         }
+
+
     }
 }
