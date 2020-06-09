@@ -91,7 +91,7 @@ namespace Taxi.Web.Data
                             Qualification = 4.5f,
                             Source = "ITM Fraternidad",
                             Target = "ITM Robledo",
-                            Remarks = "Muy buen servicio",
+                            Remarks = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at iaculis nulla. Maecenas sit amet finibus ipsum. Curabitur arcu nunc, condimentum sed arcu id, dictum elementum augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent cursus urna efficitur, eleifend massa in, accumsan lorem. Nam ullamcorper, enim id blandit volutpat, lectus lectus egestas magna, eu eleifend ligula urna ac velit. Quisque quis erat erat. Fusce mattis malesuada consequat. Sed sed placerat orci, in pretium augue. In posuere quis purus vel vehicula. Duis ac posuere libero. Nam et vestibulum magna. ",
                             User = user1
                         },
                         new TripEntity
@@ -101,7 +101,7 @@ namespace Taxi.Web.Data
                             Qualification = 4.8f,
                             Source = "ITM Robledo",
                             Target = "ITM Fraternidad",
-                            Remarks = "Conductor muy amable",
+                            Remarks = "Sed at metus vulputate, semper nibh id, efficitur leo. Nam pretium nisi vitae massa interdum, eget iaculis sem lacinia. Suspendisse ultrices aliquam ex, et blandit nulla vehicula eu. Suspendisse sit amet risus iaculis, dictum mi sit amet, faucibus arcu. Integer vehicula scelerisque erat, nec aliquet ipsum condimentum eu. Mauris id leo at augue imperdiet feugiat. Sed a mi vel diam hendrerit ullamcorper sit amet sed urna. Fusce vel ornare velit. Nullam consectetur sapien eu tortor ullamcorper, vel consequat felis vehicula. Vestibulum sit amet efficitur felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur est quis lectus mollis scelerisque. Etiam luctus bibendum ligula, congue sollicitudin metus imperdiet ac. Nullam sed lectus pharetra, condimentum nulla nec, pulvinar metus. ",
                             User = user1
                         }
                     }

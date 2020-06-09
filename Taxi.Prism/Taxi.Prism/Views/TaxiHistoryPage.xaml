@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Taxi.Prism.Views.TaxiHistoryPage"
+             BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
 
     <AbsoluteLayout>
@@ -19,18 +23,21 @@
                        Placeholder="Enter plaque..." 
                        Text="{Binding Plaque}"
                        VerticalOptions="Center"/>
-                <Button BackgroundColor="Navy"
+                <Button 
                         Command="{Binding CheckPlaqueCommand}"
-                        CornerRadius="20"
-                        HeightRequest="40"
                         Margin="10,0"
-                        Text="Check Plaque"
-                        TextColor="White"/>
+                        Text="Check Plaque"/>
             </StackLayout>
+            <rating:SfRating HorizontalOptions="Center" 
+                             IsEnabled="False"
+                             Margin="0,5"
+                             Precision="Exact"
+                             Value="{Binding Taxi.Qualification}" />
             <Label FontAttributes="Bold" 
-                   FontSize="48"
+                   FontSize="Large"
                    HorizontalOptions="Center"
-                   Text="{Binding Taxi.Qualification, StringFormat='{0:N2}'}"/>
+                   Text="{Binding Taxi.Qualification, StringFormat='Qualification: {0:N2}'}"/>
+
             <StackLayout Orientation="Horizontal">
                 <Label Text="Number of trips:"/>
                 <Label Text="{Binding Taxi.NumberOfTrips, StringFormat='{0:N0}'}"/>
@@ -57,16 +64,22 @@
                        Text="Score"/>
                 <Label Grid.Column="2"
                        FontAttributes="Bold"
+                      
                        Text="Remarks"/>
             </Grid>
 
-            <CollectionView ItemsSource="{Binding Taxi.Trips}">
+            <CollectionView ItemsSource="{Binding Trips}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectTripCommand}"/>
+                            </Grid.GestureRecognizers>
+
+
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width=".8*" />
                                 <ColumnDefinition Width=".5*" />
@@ -79,7 +92,9 @@
                             <Label Grid.Column="1"
                                    Text="{Binding Qualification, StringFormat='{0:N2}'}"
                                    VerticalOptions="Center"/>
-                            <Label Grid.Column="2"
+                            <Label Grid.Column="2" 
+                                   MaxLines="2"
+                                   LineBreakMode="TailTruncation"
                                    Text="{Binding Remarks}"
                                    VerticalOptions="Center"/>
                             <Image Grid.Column="3" 
@@ -89,17 +104,17 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
-        <busyindicator:SfBusyIndicator AnimationType="RollingBall" 
-                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
-                                       AbsoluteLayout.LayoutFlags="All"
-                                       BackgroundColor="Silver"
-                                       HorizontalOptions="Center"
-                                       TextColor="White"
-                                       IsBusy="{Binding IsRunning}"
-                                       Title="Loading..."
-                                       VerticalOptions="Center"
-                                       ViewBoxWidth="80"
-                                       ViewBoxHeight="80" />
+        <busyindicator:SfBusyIndicator AnimationType="Gear" 
+                                    AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    BackgroundColor="{StaticResource ColorDanger}"
+                                    HorizontalOptions="Center"
+                                    TextColor="{StaticResource ColorFontInverse}"
+                                    IsBusy="{Binding IsRunning}"
+                                    Title="Loading"
+                                    VerticalOptions="Center"
+                                    ViewBoxWidth="80"
+                                    ViewBoxHeight="80" />
 
     </AbsoluteLayout>
         
